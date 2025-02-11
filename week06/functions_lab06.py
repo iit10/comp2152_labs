@@ -141,12 +141,37 @@ def inception_dream(num_dream_lvls):
 def save_game(winner, hero_name="", sum_starts=0):
     with open("save.txt", "a")as file:
         if winner =="Hero":
-            file.write("Hero{hero_name}has killed hte monster with{num_starts}stars.\n")
+            file.write("Hero{hero_name}has killed hte monster gained{num_starts}stars.\n")
             
         elif winner == "Monster":
             file.write("Monster killer the {hero_name}\n")
             
 # Lab 06 - Question 5a
-
+def lead_game():
+    try:
+        with open("save.txt","r") as file:
+            print ("  |  Loading from saved file...")
+            lines=file.readlines()
+            if lines:
+                last_line = line [-1].strip()
+                print(last_line)
+                return last_line
+    except:FileNotFoundError:
+        print("No previous game found.Starting fresh...")
+        return None
+        
 
 # Lab 06 - Question 5b
+def adjust_combat_strength(combat_strength, m_combat_strength):
+    last_game = load_game()
+    if last_game:
+        if "Hero" in last_game and "gained" in last_game:
+            num_starts = int(last_game.split()(-2))
+            if num_starts > 3:
+                print("  |  Increasing the mosnter's combat strenght since Hero won so easliy last game")
+                m_combat_strength +=1
+            elif "Monster killed the" in last_game:
+                combat_strength+=1
+                print("  |  In creasing Hero's combat strength since you lost last game")
+            else:
+                print("  |  ...Based on your previous game, neither the hero or the monster's combat ")
