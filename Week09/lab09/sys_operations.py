@@ -19,10 +19,13 @@ print(socket.getdefaulttimeout())
 print ("-------------------------------\n")
 
 print("Operating System type")
-print(socket.getdefaulttimeout())
+print(os.name)
 print ("-------------------------------\n")
-
 
 print("Operating System name")
 print(platform.system())
+print ("-------------------------------\n")
+
+print("Current Process ID")
+print(os.getpid())
 print ("-------------------------------\n")
